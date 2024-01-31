@@ -14,7 +14,7 @@ if gpus:
         print(e)
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 
-EPISODES = 10
+EPISODES = 3
 
 
 def train_model():
@@ -29,11 +29,11 @@ def train_model():
     if os.path.exists(file_path) == True:
         agent.load(file_path)
     done = False
-    batch_size = 59 #размер выборки
+    batch_size = 6 #размер выборки
 
     for e in range(EPISODES):
         state = Numex.reset()
-        for time in range(500):
+        for time in range(6):
             # env.render()
             actions = []
             action = agent.act(state)
@@ -56,6 +56,7 @@ def train_model():
     plt.title("Зависимость NPV от числа эпизодов")
     plt.xlabel('Эпизоды')
     plt.ylabel('NPV [млн. руб.]')
+    plt.ylim(-300, 50)
     plt.show()
     print("Total Reward: ", all_rewards)
     print("Epsilon : ", agent.epsilon)
@@ -77,4 +78,5 @@ def predict_model():
     return
 
 if __name__ == "__main__":
-    train_model()
+    #train_model()
+    predict_model()

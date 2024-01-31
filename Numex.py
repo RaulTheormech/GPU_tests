@@ -6,8 +6,8 @@ import os
 import pandas as pd
 from keras import backend as K
 
-action_size = 59 # было 15
-state_size = 59
+action_size = 6 # было 15 or 59
+state_size = 6
 terminate_day = 3700
 wells_file_name = 'Wells.txt'
 all_rewards = []
@@ -42,7 +42,7 @@ def run_Numex(state, action, actions_memory): # reward это NPV
     os.system('cmd /k "NumEx2.exe D:/NumEx2/Model_7/results/model.pkl D:/NumEx2/Model_7/variants/'+wells_file_name+' & exit"')
     field = pd.read_csv("D:/NumEx2/Model_7/results/0/field.txt", encoding='latin-1', header=None)
     reward = get_NPV(field)
-    preward = reward[0][0]
+    preward = reward[0][-1]
     #np.array(preward)
     print(preward)
     global all_rewards

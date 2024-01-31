@@ -14,15 +14,15 @@ class DQNAgent:
         self.epsilon = 1.0  # exploration rate
         self.epsilon_min = 0.01
         self.epsilon_decay = 0.995 #было 0.995
-        self.learning_rate = 0.001
+        self.learning_rate = 0.01 # было 0.001
         self.model = self._build_model()
 
     def _build_model(self):
         # Neural Net for Deep-Q learning Model
         model = Sequential()
-        model.add(Dense(256, input_dim=self.state_size, activation='relu'))
-        model.add(Dense(256, activation='relu'))
-        model.add(Dense(256, activation='relu'))
+        model.add(Dense(128, input_dim=self.state_size, activation='relu'))
+        model.add(Dense(128, activation='relu'))
+        model.add(Dense(128, activation='relu'))
         model.add(Dense(self.action_size, activation='linear'))
         model.compile(loss='mse',
                       optimizer=Adam(lr=self.learning_rate))
